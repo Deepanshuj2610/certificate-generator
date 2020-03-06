@@ -180,7 +180,7 @@ class Ui_MainWindow(object):
         self.Start.setText(_translate("MainWindow", "Start"))
         self.Browse_jpeg.setText(_translate("MainWindow", "Browse"))
         self.Info_xlsx_csv.setText(
-            _translate("MainWindow", "Please drag and drop the CSV or Excel file  below or use browse button."))
+            _translate("MainWindow", "Please drag and drop the CSV file  below or use browse button."))
         self.Browse_xlsx_csv.setText(_translate("MainWindow", "Browse"))
         self.Info_template.setText(
             _translate("MainWindow", "Please select the template for the certificate in jpeg fomrat."))
@@ -258,11 +258,11 @@ class widget(QMainWindow):
         self.ui.FilePath_template.setText(fileName[0])
 
     def browse_spreadsheet(self):
-        fileName = QFileDialog.getOpenFileName(self, "Open Image", filter="*.xlsx, *.csv")
+        fileName = QFileDialog.getOpenFileName(self, "Open CSV", filter="*.xlsx, *.csv")
         self.ui.FilePath_spreadsheet.setText(fileName[0])
 
     def browse_output_folder(self):
-        folderName = QFileDialog.getExistingDirectory(self, "Select Output Folder which is existing")
+        folderName = QFileDialog.getExistingDirectory(self, "Select a Folder for Output certificates.")
         self.ui.FolderPath.setText(folderName)
 
     def done(self):
