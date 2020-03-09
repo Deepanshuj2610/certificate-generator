@@ -34,7 +34,8 @@ class FileEdit_spreadsheet(QLineEdit):
         urls = data.urls()
         if urls and urls[0].scheme() == 'file':
             filepath = str(urls[0].path())[1:]
-            filepath = '/' + filepath
+            if sys.platform!='win32':
+                filepath = '/' + filepath
             if filepath.endswith('.xlsx') or filepath.endswith('.csv'):
                 self.setText(filepath)
             else:
@@ -67,7 +68,8 @@ class FileEdit_template(QLineEdit):
         urls = data.urls()
         if urls and urls[0].scheme() == 'file':
             filepath = str(urls[0].path())[1:]
-            filepath = '/' + filepath
+            if sys.platform!='win32':
+                filepath = '/' + filepath
             if filepath.endswith('.jpg') or filepath.endswith('.jpeg'):
                 self.setText(filepath)
             else:
@@ -202,7 +204,7 @@ class WorkerThread(QThread):
         try:
             img = Image.open(self.filepath_template)  # template
         except IOError:
-            pass
+            print('IOError')
         draw = ImageDraw.Draw(img)
         draw.text((455, 200), name, font=self.selectFont,
                   fill=(110, 110, 110))  # 430,360 is the x,y co-ordinates 105,105,105 is the code for font colour
