@@ -210,10 +210,11 @@ class WorkerThread(QThread):
 
     def run(self):
         cars = pandas.read_csv(self.filepath_spreadsheet)  # txt file containing the names of the attendee
-        cases = cars.Name.tolist()
+        df = cars.DataFrame(data, columns=['Name'])
+        #cases = cars.Name.tolist()
         self.selectFont = ImageFont.truetype(os.getcwd() + '/text_design/' + self.font_name, size=25)  # font selection
 
-        for i in cases:
+        for i in df:
             i = i.replace("\n", "")
             self.generate(i)
 
