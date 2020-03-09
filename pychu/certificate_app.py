@@ -210,7 +210,7 @@ class WorkerThread(QThread):
 
     def run(self):
         cars = pandas.read_csv(self.filepath_spreadsheet)  # txt file containing the names of the attendee
-        df = cars.DataFrame(data, columns=['Name'])
+        df = pandas.DataFrame(cars, columns=['Name'])
         #cases = cars.Name.tolist()
         self.selectFont = ImageFont.truetype(os.getcwd() + '/text_design/' + self.font_name, size=25)  # font selection
 
