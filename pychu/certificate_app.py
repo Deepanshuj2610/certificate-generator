@@ -183,7 +183,7 @@ class Ui_MainWindow(object):
             _translate("MainWindow", "Please drag and drop the CSV file  below or use browse button."))
         self.Browse_xlsx_csv.setText(_translate("MainWindow", "Browse"))
         self.Info_template.setText(
-            _translate("MainWindow", "Please select the template for the certificate in jpeg fomrat."))
+            _translate("MainWindow", "Please select the template for the certificate in jpeg format."))
 
 
 # Main Worker thread for logic
@@ -210,13 +210,11 @@ class WorkerThread(QThread):
 
     def run(self):
         cars = pandas.read_csv(self.filepath_spreadsheet)  # txt file containing the names of the attendee
-        df = cars.DataFrame(data, columns=['Name'])
-        #cases = cars.Name.tolist()
+        df = pandas.DataFrame(cars, columns=['Name'])
         self.selectFont = ImageFont.truetype(os.getcwd() + '/text_design/' + self.font_name, size=25)  # font selection
 
-        for i in df:
-            i = i.replace("\n", "")
-            self.generate(i)
+        for i in df.values.tolist():
+            self.generate(i[0])
 
 
 class widget(QMainWindow):
